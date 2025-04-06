@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useContext} from 'react';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LinearColor from '../Components/Bodycomponents/linearprogress';
 import fb from "../Components/images/fb.png";
 import google from "../Components/images/google.png";
-import axios from 'axios';
 import Navbar from '../Components/Navbarcomponents/Navbar';
-import Publicroute from '../middleware/publicroute';
-import LinearColor from '../Components/Bodycomponents/linearprogress';
 import { UserContext } from '../Context/Clientcontext';
+import Publicroute from '../middleware/publicroute';
 
 
 const RegistrationForm = () => {
@@ -78,7 +78,8 @@ const RegistrationForm = () => {
   const Submit = async () => {
 
     try{if(passwordResult && password === confirmPassword){
-        const res = await axios.post('/register',{username,password})
+        const res = await axios.post('http://localhost:5000/api/register', { username, password });
+        // const res = await axios.post('/register',{username,password})
         if(res.data.username === username){
             alert("Registration successfull please login")
             navigate('/login')

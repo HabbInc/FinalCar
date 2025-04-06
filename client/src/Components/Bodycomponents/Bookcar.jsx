@@ -1,16 +1,16 @@
-import React,{useContext, useEffect, useState} from 'react';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
-import audi from "../images/audi.jpg";
-import toyota from "../images/toyota.jpg";
-import bmw from "../images/bmw.jpg";
-import passat from "../images/passat.jpg";
-import benz from "../images/benz.jpg";
-import golf from "../images/golf.jpg";
-import { Link, Navigate, useNavigate } from 'react-router-dom';
 import CloseIcon from '@mui/icons-material/Close';
+import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from '../../Context/Clientcontext';
+import audi from "../images/audi.jpg";
+import benz from "../images/benz.jpg";
+import bmw from "../images/bmw.jpg";
+import golf from "../images/golf.jpg";
+import passat from "../images/passat.jpg";
+import toyota from "../images/toyota.jpg";
 
 
 
@@ -70,9 +70,9 @@ export default function Bookcar({isDivVisible, setDivVisible,  carType, pickPlac
             navigate('/login')
         }
         else{
-            try{const {data} = await axios.post('/reservation',{carType, pickPlace, dropPlace, pickDate, dropDate, pickTime,dropTime ,firstname,lastname ,age ,phone,email,address,city,zipcode})
+            try{const {data} = await axios.post('http://localhost:5000/api/reservation',{carType, pickPlace, dropPlace, pickDate, dropDate, pickTime,dropTime ,firstname,lastname ,age ,phone,email,address,city,zipcode})
             //console.log(data)
-            navigate('/account/bookings')
+            navigate('http://localhost:5000/api/account/bookings')
         }catch(e){
                 console.log(e)
             }

@@ -1,12 +1,12 @@
-import React, { useContext, useState, useEffect} from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import LinearColor from '../Components/Bodycomponents/linearprogress';
 import fb from "../Components/images/fb.png";
 import google from "../Components/images/google.png";
-import axios from 'axios';
 import Navbar from '../Components/Navbarcomponents/Navbar';
 import { UserContext } from '../Context/Clientcontext';
 import Publicroute from '../middleware/publicroute';
-import LinearColor from '../Components/Bodycomponents/linearprogress';
 
 
 
@@ -37,7 +37,7 @@ export default function Login(){
         event.preventDefault();
 
         try{
-            const {data} = await axios.post('/login',{username: email, password: password});
+            const {data} = await axios.post('http://localhost:5000/api/login',{username: email, password: password});
             if(data?.username === email){
                 console.log(data)
                 setUser(data);
